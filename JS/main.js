@@ -72,12 +72,15 @@ Player.prototype.updatePlayer = function() {
   if (this.direction[2] == true && this.direction[0] == true) {
     this.moveUp();
     this.moveRight();
-  } else if (this.direction[3] == true && this.direction[0] == true) {
+  } else if (this.direction[3] == true && this.direction[1] == true) {
     this.moveDown();
     player.moveLeft();
   } else if (this.direction[2] == true && this.direction[1] == true) {
     this.moveUp();
     this.moveLeft();
+  } else if (this.direction[3] == true && this.direction[0] == true) {
+    this.moveDown();
+    this.moveRight();
   } else if (this.direction[2] == true) {
     player.moveUp();
   } else if (this.direction[3] == true) {

@@ -1,5 +1,5 @@
 // //******************************************************************
-// // Player > Construct function 
+// // Player > Construct function
 // //******************************************************************
 function Player(x, y, speed, radius, ctx, color) {
   this.x = x;
@@ -51,7 +51,7 @@ Player.prototype.moveDown = function () {
   if (this.y > 0 && this.y < 600 - this.radius){
     this.y += this.speed;
   }
-  console.log("Right was called");
+  console.log("Down was called");
 };
 
 
