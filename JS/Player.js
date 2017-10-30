@@ -1,14 +1,11 @@
 // //******************************************************************
-// // Players
+// // Player > Construct function 
 // //******************************************************************
-
-
-var player;
-
-
-function Player(x, y, radius, ctx, color) {
+function Player(x, y, speed, radius, ctx, color) {
   this.x = x;
   this.y = y;
+  this.speed = speed;
+  this.direction = [false,false,false,false];
   this.radius = radius;
   this.ctx = ctx;
   this.color = color;
@@ -30,32 +27,32 @@ Player.prototype.draw = function () {
 
 Player.prototype.moveLeft = function () {
   if (this.x > this.radius){
-    this.x -= 25;
+    this.x -= this.speed;
   }
   console.log("Left was called");
 };
-//si cambio 800 por canvas.width no funciona, lo mismo con canvas.height
+//si cambio 600 por canvas.width no funciona, lo mismo con canvas.height
 Player.prototype.moveRight = function () {
-  if (this.x > 0 && this.x < 800 - this.radius){
-    this.x += 25;
+  if (this.x > 0 && this.x < 600 - this.radius){
+    this.x += this.speed;
   }
   console.log("Right was called");
 };
 
 Player.prototype.moveUp = function () {
   if (this.y > this.radius){
-    this.y -= 25;
+    this.y -= this.speed;
   }
+
   console.log("Up was called");
 };
 
 Player.prototype.moveDown = function () {
   if (this.y > 0 && this.y < 600 - this.radius){
-    this.y += 25;
+    this.y += this.speed;
   }
   console.log("Right was called");
 };
-
 
 
 //Punch Function
