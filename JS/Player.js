@@ -5,26 +5,28 @@ function Player(x, y, speed, ctx) {
   this.x = x;
   this.y = y;
   this.speed = speed;
-  this.radius = 50; 
+  this.radius = 50;
   this.Vx = 0;
   this.Vy = 0;
   this.friction = 0.9;
-  this.ctx = ctx;
+  this.rpunch = 0;
+  this.lpunch = 0;
   this.keys = {};
 };
 
-// Draw player
 Player.prototype.draw = function () {
 
-  var face = new Image();
-  face.src = './images/Face200.png';
-  ctx.drawImage(face, this.x, this.y, 100, 100);
-  var punchLeft = new Image();
-  punchLeft.src = './images/Fist100.png';
-  ctx.drawImage(punchLeft, this.x, (this.y - 60), 75, 57);
-  var punchRight = new Image();
-  punchRight.src = './images/Fist100.png';
-  ctx.drawImage(punchRight, this.x, (this.y + 95), 75, 57);
+  var faceImg = new Image();
+  faceImg.src = './images/Face200.png';
+  ctx.drawImage(faceImg, this.x, this.y, 75, 75);
+
+  var punchLeftImg = new Image();
+  punchLeftImg.src = './images/Fist100.png';
+  ctx.drawImage(punchLeftImg, this.x + this.rpunch, (this.y - 60), 75, 57);
+
+  var punchRightImg = new Image();
+  punchRightImg.src = './images/Fist100.png';
+  ctx.drawImage(punchRightImg, this.x + this.lpunch, (this.y + 75), 75, 57);
 };
 
 //Moving functions
@@ -61,7 +63,7 @@ Player.prototype.updatePosition = function() {
   this.y  += this.Vy;
   this.Vx *= this.friction;
   this.x  += this.Vx;
-
+//LIMITS  RING
   if(this.y + this.radius <= 50) {
      this.y = 25 + this.radius;
   };
@@ -74,13 +76,23 @@ Player.prototype.updatePosition = function() {
   if(this.x + this.radius > 600) {
      this.x = 575 - this.radius;
   }
-
-
 };
 
-//Punch Function
-Player.prototype.punch = function () {
+//Punch Functions
+Player.prototype.punchLeft = function () {
+  this.rpunch = 100;
+  var that = this;
+  setTimeout(function () {
+    that.rpunch = 0;
+  }, 200);
+};
 
+Player.prototype.punchRight = function () {
+  this.lpunch = 100;
+  var that = this;
+  setTimeout(function () {
+    that.lpunch = 0;
+  }, 200);
 };
 
 //Point score function

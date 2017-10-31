@@ -25,6 +25,16 @@ function updateGameArea() {
     if (player.keys[37]) {
         player.moveLeft();
     }
+    //LEFT PUNCH
+    if (player.keys[80]) {
+        player.punchLeft();
+    }
+    //RIGHT PUNCH
+    if (player.keys[79]) {
+        player.punchRight();
+    }
+
+
     ctx.clearRect(0, 0, 690, 690);
     myGameArea.draw();
     player.updatePosition();
