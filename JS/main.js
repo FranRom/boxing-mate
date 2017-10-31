@@ -1,11 +1,11 @@
-
-
   var canvas = document.getElementById('ring');
   var ctx = canvas.getContext('2d');
   //we can pass a "color" argument to canvas color here: now transparent
   var myGameArea = new GameArea('rgba(0, 0, 0, 0)');
   //player creation
-  var player = new Player(100, 100, 25, 30, myGameArea.ctx, "white");
+  var player = new Player(image, 50, 300, 25, myGameArea.ctx);
+  var image = new Image();
+  image.src = './images/Face-200.png';
   myGameArea.draw();
   player.draw();
 
