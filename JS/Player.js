@@ -1,46 +1,30 @@
 // //******************************************************************
 // // Player > Construct function
 // //******************************************************************
-function Player(image, x, y, speed, ctx) {
+function Player(x, y, speed, ctx) {
   this.x = x;
   this.y = y;
   this.speed = speed;
-  this.radius = 50; //poner aquí el tamano de imagen /2 ?
+  this.radius = 50; 
   this.Vx = 0;
   this.Vy = 0;
   this.friction = 0.9;
   this.ctx = ctx;
-//  this.color = color; con imagen no hace falta
   this.keys = {};
 };
 
 // Draw player
 Player.prototype.draw = function () {
 
-  var image = new Image();
-  image.src = './images/Face-200.png';
-  ctx.drawImage(image, this.x, this.y, 100, 100);
-  image.src = './images/Fist100.png';
-  ctx.drawImage(image, this.x, (this.y - 60), 75, 57);
-  image.src = './images/Fist100.png';
-  ctx.drawImage(image, this.x, (this.y + 95), 75, 57);
-
-  // 3 imagenes bien posicionadas(hardcoded) sin moverse
-  // var image = new Image();
-  // image.src = './images/Face-200.png';
-  // ctx.drawImage(image, 50, 300, 100, 100);
-  // image.src = './images/Fist100.png';
-  // ctx.drawImage(image, 60, 240, 75, 57);
-  // image.src = './images/Fist100.png';
-  // ctx.drawImage(image, 60, 395, 75, 57);
-
-  //Circulo inicial funcionando
-  // this.ctx.beginPath();
-  // this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-  // this.ctx.strokeStyle = this.color;
-  // this.ctx.stroke();
-  // this.ctx.fillStyle = 'white';
-  // this.ctx.fill();
+  var face = new Image();
+  face.src = './images/Face200.png';
+  ctx.drawImage(face, this.x, this.y, 100, 100);
+  var punchLeft = new Image();
+  punchLeft.src = './images/Fist100.png';
+  ctx.drawImage(punchLeft, this.x, (this.y - 60), 75, 57);
+  var punchRight = new Image();
+  punchRight.src = './images/Fist100.png';
+  ctx.drawImage(punchRight, this.x, (this.y + 95), 75, 57);
 };
 
 //Moving functions
