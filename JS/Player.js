@@ -5,7 +5,7 @@ function Player(x, y, speed, ctx) {
   this.x = x;
   this.y = y;
   this.speed = speed;
-  this.radius = 50;
+  this.radius = 50; //depending of head size to control limits
   this.Vx = 0;
   this.Vy = 0;
   this.friction = 0.9;
@@ -64,17 +64,21 @@ Player.prototype.updatePosition = function() {
   this.Vx *= this.friction;
   this.x  += this.Vx;
 //LIMITS  RING
-  if(this.y + this.radius <= 50) {
-     this.y = 25 + this.radius;
+  if(this.y + this.radius <= 107) {
+     this.y = 60 + this.radius;
+     this.Vy = 3;
   };
-  if(this.y + this.radius > 600) {
-     this.y = 575 - this.radius;
+  if(this.y + this.radius > 520) {
+     this.y = 450 - this.radius;
+     this.Vy = 3;
    };
   if(this.x + this.radius <= 50) {
-     this.x = 25 + this.radius;
+     this.x = 30 + this.radius;
+     this.Vx = 5;
   }
-  if(this.x + this.radius > 600) {
-     this.x = 575 - this.radius;
+  if(this.x + this.radius > 590) {
+     this.x = 520 - this.radius;
+     this.Vx = 3;
   }
 };
 
