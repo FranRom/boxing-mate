@@ -1,7 +1,7 @@
 // //******************************************************************
 // // Player > Construct function
 // //******************************************************************
-function Player(x, y, speed, ctx) {
+function Player(x, y, speed, ctx, images) {
   this.x = x;
   this.y = y;
   this.speed = speed;
@@ -12,21 +12,23 @@ function Player(x, y, speed, ctx) {
   this.rpunch = 0;
   this.lpunch = 0;
   this.keys = {};
+  this.images = images;
+  this.score = 0;
+  
 };
-
 Player.prototype.draw = function () {
 
   var faceImg = new Image();
-  faceImg.src = './images/Face200.png';
+  faceImg.src = this.images[0];
   ctx.drawImage(faceImg, this.x, this.y, 75, 75);
 
   var punchLeftImg = new Image();
-  punchLeftImg.src = './images/Fist100.png';
-  ctx.drawImage(punchLeftImg, this.x + this.rpunch, (this.y - 60), 75, 57);
+  punchLeftImg.src = this.images[1];
+  ctx.drawImage(punchLeftImg, this.x + this.lpunch, (this.y - 40), 50, 38);
 
   var punchRightImg = new Image();
-  punchRightImg.src = './images/Fist100.png';
-  ctx.drawImage(punchRightImg, this.x + this.lpunch, (this.y + 75), 75, 57);
+  punchRightImg.src = this.images[2];
+  ctx.drawImage(punchRightImg, this.x + this.rpunch, (this.y + 75), 50, 38);
 };
 
 //Moving functions
@@ -63,36 +65,38 @@ Player.prototype.updatePosition = function() {
   this.y  += this.Vy;
   this.Vx *= this.friction;
   this.x  += this.Vx;
-//LIMITS  RING
+//LIMITS  RING with bounce effect
   if(this.y + this.radius <= 107) {
-     this.y = 60 + this.radius;
-     this.Vy = 3;
+     this.y = 30 + this.radius;
+     this.Vy = 5;
   };
   if(this.y + this.radius > 520) {
-     this.y = 450 - this.radius;
-     this.Vy = 3;
+     this.y = 460 - this.radius;
+     this.Vy = 5;
    };
   if(this.x + this.radius <= 50) {
-     this.x = 30 + this.radius;
+     this.x = this.x + this.radius;
      this.Vx = 5;
   }
   if(this.x + this.radius > 590) {
-     this.x = 520 - this.radius;
-     this.Vx = 3;
+     this.x = 500 - this.radius;
+     this.Vx = 5;
   }
 };
 
 //Punch Functions
-Player.prototype.punchLeft = function () {
-  this.rpunch = 100;
+Player.prototype.punchLeft = function (player) {
+  if(player == player1) this.rpunch = 75;
+  else this.rpunch = -75;
   var that = this;
   setTimeout(function () {
     that.rpunch = 0;
   }, 200);
 };
 
-Player.prototype.punchRight = function () {
-  this.lpunch = 100;
+Player.prototype.punchRight = function (player) {
+  if(player == player1) this.lpunch = 75;
+  else this.lpunch = -75;
   var that = this;
   setTimeout(function () {
     that.lpunch = 0;
@@ -101,7 +105,7 @@ Player.prototype.punchRight = function () {
 
 //Point score function
 Player.prototype.scorePoint = function () {
-
+this.score++;
 };
 
 //Winner
