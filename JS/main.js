@@ -3,8 +3,8 @@
   var myGameArea = new GameArea('rgba(0, 0, 0, 0)');
   var imagesPlayer1 =['./images/FacePlayer1.png', './images/GloveLeftOrangePlayer1.png', './images/GloveRightOrangePlayer1.png'];
   var imagesPlayer2 =['./images/FacePlayer2.png', './images/GloveRightGreenPlayer2.png', './images/GloveLeftGreenPlayer2.png'];
-  var player1 = new Player(50, 270, 25, myGameArea.ctx,imagesPlayer1);
-  var player2 = new Player(470, 270, 25, myGameArea.ctx,imagesPlayer2);
+  var player1 = new Player(50, 270, 25, myGameArea.ctx,imagesPlayer1,-20);
+  var player2 = new Player(470, 270, 25, myGameArea.ctx,imagesPlayer2, 0);
   myGameArea.draw();
   player1.draw();
 
@@ -29,6 +29,16 @@ function updateGameArea() {
     //RIGHT PUNCH
     if (player1.keys[84]) player1.punchRight(player1);
     if (player2.keys[80]) player2.punchRight(player2);
+    //Players Collisions
+    if (! (player1.x + player1.faceWidth < player2.x ||
+          player1.x > player2.x + player2.faceWidth  ||
+          player1.y + player1.faceHeight < player2.y ||
+          player1.y > player2.y + player2.faceHeight  )) {
+      player1.x -= 40;
+      player1.Vx = 5;
+      player2.x += 40;
+      player2.Vx = 5;
+    };
 
     ctx.clearRect(0, 0, 690, 690);
     myGameArea.draw();
@@ -36,17 +46,11 @@ function updateGameArea() {
     player2.updatePosition();
     player1.draw();
     player2.draw();
-
 };
 
-function punchInTheFace() {
-  if (player1.draw.punchLeftImg.x + this.rpunch + 50 <= player2.draw.faceImg.x) {
-    console.log ("player 1 punched player2");
-  };
-};
 
 function scorePlayer() {
-//  if player1
+
 
 }
 
@@ -59,5 +63,5 @@ document.body.addEventListener("keyup", function (e) {
   player1.keys[e.keyCode] = false;
   player2.keys[e.keyCode] = false;
 });
-punchInTheFace();
+
 updateGameArea();

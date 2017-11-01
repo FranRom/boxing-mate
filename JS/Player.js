@@ -1,7 +1,7 @@
 // //******************************************************************
 // // Player > Construct function
 // //******************************************************************
-function Player(x, y, speed, ctx, images) {
+function Player(x, y, speed, ctx, images,facePositionX) {
   this.x = x;
   this.y = y;
   this.speed = speed;
@@ -14,13 +14,12 @@ function Player(x, y, speed, ctx, images) {
   this.keys = {};
   this.images = images;
   this.score = 0;
-  
+  this.facePosition = facePositionX;
+  this.faceWidth = 75;
+  this.faceHeight = 75;
+
 };
 Player.prototype.draw = function () {
-
-  var faceImg = new Image();
-  faceImg.src = this.images[0];
-  ctx.drawImage(faceImg, this.x, this.y, 75, 75);
 
   var punchLeftImg = new Image();
   punchLeftImg.src = this.images[1];
@@ -29,6 +28,10 @@ Player.prototype.draw = function () {
   var punchRightImg = new Image();
   punchRightImg.src = this.images[2];
   ctx.drawImage(punchRightImg, this.x + this.rpunch, (this.y + 75), 50, 38);
+
+  var faceImg = new Image();
+  faceImg.src = this.images[0];
+  ctx.drawImage(faceImg, this.x + this.facePosition, this.y, this.faceWidth, this.faceHeight);
 };
 
 //Moving functions
