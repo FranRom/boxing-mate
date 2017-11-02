@@ -2,7 +2,7 @@
 // // Player > Construct function
 // //******************************************************************
 
-function Player(x, y, speed, ctx, images, facePositionX) {
+function Player(x, y, speed, ctx, images, facePositionX, direction) {
   this.x = x;
   this.y = y;
   this.speed = speed;
@@ -16,8 +16,8 @@ function Player(x, y, speed, ctx, images, facePositionX) {
   this.facePosition = facePositionX;
   this.faceWidth = 75;
   this.faceHeight = 75;
-  this.rpunch = new Punch(this.images[1], this.x, this.y);
-  this.lpunch = new Punch(this.images[2], this.x, this.y);
+  this.rpunch = new Punch(this.images[1], this.x, this.y, direction);
+  this.lpunch = new Punch(this.images[2], this.x, this.y, direction);
 };
 
 
@@ -28,7 +28,7 @@ Player.prototype.draw = function () {
   ctx.drawImage(faceImg, this.x + this.facePosition, this.y, this.faceWidth, this.faceHeight);
   this.lpunch.draw(this.x, this.y + 75);
   this.rpunch.draw(this.x, this.y - 40);
-  // this.rpunch.draw(this.rpunch.x, this.y - 40);
+
 };
 
 //Moving functions
@@ -65,8 +65,6 @@ Player.prototype.updatePosition = function() {
   this.y  += this.Vy;
   this.Vx *= this.friction;
   this.x  += this.Vx;
-//  this.rpunch.x += this.Vx;
-
 
 //LIMITS  RING with bounce effect
   if(this.y + this.radius <= 107) {
@@ -87,24 +85,6 @@ Player.prototype.updatePosition = function() {
   }
 };
 
-//Punch Functions
-// Player.prototype.punchLeft = function (player) {
-//   if(player == player1) this.rpunch = 75;
-//   else this.rpunch = -75;
-//   var that = this;
-//   setTimeout(function () {
-//     that.rpunch = 0;
-//   }, 200);
-// };
-
-// Player.prototype.punchRight = function (player) {
-//   if(player == player1) this.lpunch = 75;
-//   else this.lpunch = -75;
-//   var that = this;
-//   setTimeout(function () {
-//     that.lpunch = 0;
-//   }, 200);
-// };
 
 //Point score function
 Player.prototype.scorePoint = function () {
