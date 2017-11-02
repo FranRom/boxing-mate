@@ -2,7 +2,6 @@
 // // Game board
 // //******************************************************************
 
-
 function GameArea (color) {
   this.ctx = document.getElementById('ring').getContext("2d");
   this.color = color;

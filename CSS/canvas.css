@@ -1,9 +1,15 @@
 body {
   margin-top: 40px;
-  font-family: 'Luckiest Guy', cursive;
+  font-family: 'Nova Square', sans-serif;
+  background-color: #E8E8E8;
   text-align: center;
   height: 100%;
   overflow: hidden;
+}
+
+h2 {
+  font-size: 30px;
+  color: #0F1D4A;
 }
 
 .img {
@@ -16,6 +22,17 @@ body {
 #ring {
   position: relative;
   z-index: 20;
+}
+
+.leftCol {
+  position: absolute;
+  padding: 20px;
+
+}
+
+#timer {
+  font-family: 'Orbitron';
+  text-align: left;
 
 }
 
