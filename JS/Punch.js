@@ -6,7 +6,6 @@ function Punch(image,x, y, direction) {
   this.x = x;
   this.y = y;
   this.direction = direction;
-
   this.pressed = false;
   this.punchImg = new Image();
   this.punchImg.src = image;
@@ -36,10 +35,12 @@ Punch.prototype.checkHit = function(numPlayerPunch, faceWidth, oponentPlayer){
     if(this.x + 125  >= oponentPlayer.x &&
       this.y >= oponentPlayer.y &&
       this.y + 38 <= oponentPlayer.y + faceWidth){
-        oponentPlayer.faceImg.src = './images/punchFace.png';
+        oponentPlayer.faceImg.src = './images/punchFaceRight.png';
+        punch.play();
+        grunz.play();
         setTimeout(function() {
           oponentPlayer.faceImg.src = './images/FacePlayer2.png';
-        }, 200);
+        }, 300);
       return true;
     }
   }
@@ -47,6 +48,12 @@ Punch.prototype.checkHit = function(numPlayerPunch, faceWidth, oponentPlayer){
     if(this.x <= oponentPlayer.x + 125 &&
       this.y >= oponentPlayer.y &&
       this.y + 38 <= oponentPlayer.y + faceWidth){
+        oponentPlayer.faceImg.src = './images/punchFaceLeft.png';
+        punch.play();
+        grunz.play();
+        setTimeout(function() {
+          oponentPlayer.faceImg.src = './images/FacePlayer1.png';
+        }, 300);
       return true;
     }
   }

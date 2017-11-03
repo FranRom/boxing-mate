@@ -7,9 +7,11 @@
   var player2 = new Player(470, 270, 25, myGameArea.ctx, imagesPlayer2, 0, -75);
   var winner = '';
   var bso = new Audio('./sounds/BSOBoxingMate.mp3');
-  var fail = new Audio('./sounds/punchFail1.wav');
+  var fail = new Audio('./sounds/airCut.mp3');
+  var fail2 = new Audio('./sounds/airCut2.mp3');
   var bell = new Audio('./sounds/boxingBell.mp3');
   var punch = new Audio('./sounds/punch3.mp3');
+  var grunz = new Audio ('./sounds/grunz.mp3');
 
   myGameArea.draw();
 
@@ -48,10 +50,6 @@ function updateGameArea() {
     player1.draw();
     player2.draw();
 };
-
-function scorePlayer() {
-
-}
 
 function checkPunchs(){
   //LEFT PUNCH
@@ -98,28 +96,26 @@ window.onload = function(){
     if(minute==1){
     document.getElementById("timer").innerHTML = "Round starts!";
     bell.play();
-
   }
 
     if(second == 0){
       minute--;
       second = 60;
-
     }
+
     if(second < 10){
      second= '0'+ second;
     }
 
     if(minute <= -1) {
       document.getElementById("timer").innerHTML = " ";
-
     }
 
     if(minute == 0 && second == 1){
       checkWinner();
       document.getElementById("timer").innerHTML = winner + "wins!";
       clearInterval(interval);
-      bso.pause();
+     bso.pause();
       bell.play();
     }
 
