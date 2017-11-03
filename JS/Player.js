@@ -1,5 +1,5 @@
 // //******************************************************************
-// // Player > Construct function
+// // Player > Constractor Function
 // //******************************************************************
 
 function Player(x, y, speed, ctx, images, facePositionX, direction) {
@@ -18,6 +18,7 @@ function Player(x, y, speed, ctx, images, facePositionX, direction) {
   this.faceHeight = 75;
   this.rpunch = new Punch(this.images[1], this.x, this.y, direction);
   this.lpunch = new Punch(this.images[2], this.x, this.y, direction);
+  this.winner= "";
 };
 
 
@@ -87,11 +88,19 @@ Player.prototype.updatePosition = function() {
 
 
 //Point score function
-Player.prototype.scorePoint = function () {
-this.score++;
+Player.prototype.scorePoint = function (punch) {
+if (punch.checkHit == true) {
+  this.score += 1;
+}
+console.log(player1.score);
+console.log("scorePoint working");
 };
 
 //Winner
-Player.prototype._checkWinner = function () {
-
+Player.prototype.checkWinner = function () {
+  if (player1.score < player2.score) {
+    this.winner = "Player 2";
+  } else {
+    this.winner = "Player 1";
+  }
 };

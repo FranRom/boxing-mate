@@ -6,7 +6,6 @@
   var player1 = new Player(50, 270, 25, myGameArea.ctx, imagesPlayer1, -20, 75);
   var player2 = new Player(470, 270, 25, myGameArea.ctx, imagesPlayer2, 0, -75);
   myGameArea.draw();
-  console.log(player1)
 
 //Clean the canvas and draw canvas and players again
 function updateGameArea() {
@@ -23,12 +22,7 @@ function updateGameArea() {
     //LEFT
     if (player1.keys[65]) player1.moveLeft();
     if (player2.keys[37]) player2.moveLeft();
-    //LEFT PUNCH
-    if (player1.keys[82]) player1.lpunch.hit();
-    if (player2.keys[79]) player2.lpunch.hit();
-    //RIGHT PUNCH
-    if (player1.keys[84]) player1.rpunch.hit();
-    if (player2.keys[80]) player2.rpunch.hit();
+
 
     //Players Collisions
     if (!(player1.x + player1.faceWidth < player2.x ||
@@ -53,9 +47,32 @@ function scorePlayer() {
 
 }
 
-document.body.addEventListener("keydown", function (e) {
+function checkPunchs(){
+  //LEFT PUNCH
+  if (player1.keys[82]) {
+    if(player1.lpunch.hit(1, player1.faceWidth, player2)) player1.score++;
+    console.log(player1.score);
+  }
+  if (player2.keys[79]) {
+    if (player2.lpunch.hit(2, player1.faceWidth, player1)) player2.score++;
+    console.log(player2.score);
+  }
+  //RIGHT PUNCH
+  if (player1.keys[84]) {
+    if(player1.rpunch.hit(1, player1.faceWidth, player2)) player1.score++;
+    console.log(player1.score);
+  }
+  if (player2.keys[80]){
+    if (player2.rpunch.hit(2, player1.faceWidth, player1)) player2.score++;
+    console.log(player2.score);
+  }
+}
+
+document.body.addEventListener("keydown", (e) => {
   player1.keys[e.keyCode] = true;
   player2.keys[e.keyCode] = true;
+
+  checkPunchs();
 
 });
 document.body.addEventListener("keyup", function (e) {
@@ -75,13 +92,24 @@ window.onload = function(){
       minute--;
       second = 60;
     }
-    if(minute == 0 && second == 1){
-      document.getElementById("timer").innerHTML = "Finished!";
-    }
+
     if(minute <= -1) {
       document.getElementById("timer").innerHTML = " ";
     }
+
+    if(minute == 0 && second == 1){
+      document.getElementById("timer").innerHTML = "The Winner is: " + this.winner;
+    }
+
   }, 1000);
+
 };
+
+// Score to Game Screen
+setInterval(function(){
+  document.getElementById("Player1Score").innerHTML = player1.score + " punches";
+  document.getElementById("Player2Score").innerHTML = player2.score + " punches";
+
+}, 100);
 
 updateGameArea();

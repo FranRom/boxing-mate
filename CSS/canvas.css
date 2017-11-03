@@ -12,6 +12,11 @@ h2 {
   color: #0F1D4A;
 }
 
+h3 {
+  font-size: 25px;
+  color: #0F1D4A;
+}
+
 .img {
   position: absolute;
   z-index: 1;
@@ -30,9 +35,31 @@ h2 {
 
 }
 
+.playerScore1 {
+  background-color: #ffffff;
+  border: 1px solid #0F1D4A;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.playerScore2  {
+  background-color: #ffffff;
+  border: 1px solid #0F1D4A;
+  border-radius: 5px;
+  padding: 20px;
+}
+}
+
 #timer {
+  background-color: #ffffff;
+  border: 1px solid #0F1D4A;
+  border-radius: 5px;
+  padding: 5px;
   font-family: 'Orbitron';
   text-align: left;
+  position: absolute;
+
+
 
 }
 
