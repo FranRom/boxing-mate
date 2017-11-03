@@ -5,6 +5,7 @@
   var imagesPlayer2 =['./images/FacePlayer2.png', './images/GloveRightGreenPlayer2.png', './images/GloveLeftGreenPlayer2.png'];
   var player1 = new Player(50, 270, 25, myGameArea.ctx, imagesPlayer1, -20, 75);
   var player2 = new Player(470, 270, 25, myGameArea.ctx, imagesPlayer2, 0, -75);
+  var winner = '';
   myGameArea.draw();
 
 //Clean the canvas and draw canvas and players again
@@ -84,13 +85,13 @@ document.body.addEventListener("keyup", function (e) {
 window.onload = function(){
   var second = 1;
   var minute = 1;
-  setInterval(function(){
+  var interval = setInterval(function(){
     document.getElementById("timer").innerHTML = "Time left: " + minute + ":" + second;
     second--;
 
     if(second == 0){
       minute--;
-      second = 60;
+      second = 10;
     }
 
     if(minute <= -1) {
@@ -98,11 +99,22 @@ window.onload = function(){
     }
 
     if(minute == 0 && second == 1){
-      document.getElementById("timer").innerHTML = "The Winner is: " + this.winner;
+      checkWinner();
+      document.getElementById("timer").innerHTML = winner + "wins!";
+      clearInterval(interval);
     }
 
   }, 1000);
 
+};
+
+//Winner
+function checkWinner() {
+  if (player1.score < player2.score) {
+    winner = "Player 2 ";
+  } else {
+    winner = "Player 1 ";
+  }
 };
 
 // Score to Game Screen

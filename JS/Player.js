@@ -95,12 +95,3 @@ if (punch.checkHit == true) {
 console.log(player1.score);
 console.log("scorePoint working");
 };
-
-//Winner
-Player.prototype.checkWinner = function () {
-  if (player1.score < player2.score) {
-    this.winner = "Player 2";
-  } else {
-    this.winner = "Player 1";
-  }
-};
