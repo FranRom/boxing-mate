@@ -6,6 +6,11 @@
   var player1 = new Player(50, 270, 25, myGameArea.ctx, imagesPlayer1, -20, 75);
   var player2 = new Player(470, 270, 25, myGameArea.ctx, imagesPlayer2, 0, -75);
   var winner = '';
+  var bso = new Audio('./sounds/BSOBoxingMate.mp3');
+  var fail = new Audio('./sounds/punchFail1.wav');
+  var bell = new Audio('./sounds/boxingBell.mp3');
+  var punch = new Audio('./sounds/punch3.mp3');
+
   myGameArea.draw();
 
 //Clean the canvas and draw canvas and players again
@@ -50,7 +55,7 @@ function scorePlayer() {
 
 function checkPunchs(){
   //LEFT PUNCH
-  if (player1.keys[82]) {
+  if (player1.keys[84]) {
     if(player1.lpunch.hit(1, player1.faceWidth, player2)) player1.score++;
     console.log(player1.score);
   }
@@ -59,13 +64,12 @@ function checkPunchs(){
     console.log(player2.score);
   }
   //RIGHT PUNCH
-  if (player1.keys[84]) {
+  if (player1.keys[82]) {
     if(player1.rpunch.hit(1, player1.faceWidth, player2)) player1.score++;
     console.log(player1.score);
   }
   if (player2.keys[80]){
     if (player2.rpunch.hit(2, player1.faceWidth, player1)) player2.score++;
-    console.log(player2.score);
   }
 }
 
@@ -85,17 +89,22 @@ document.body.addEventListener("keyup", function (e) {
 window.onload = function(){
   var second = 1;
   var minute = 1;
+
+  bso.play();
   var interval = setInterval(function(){
     document.getElementById("timer").innerHTML = "Time left: " + minute + ":" + second;
     second--;
 
     if(minute==1){
     document.getElementById("timer").innerHTML = "Round starts!";
+    bell.play();
+
   }
 
     if(second == 0){
       minute--;
       second = 60;
+
     }
     if(second < 10){
      second= '0'+ second;
@@ -103,12 +112,15 @@ window.onload = function(){
 
     if(minute <= -1) {
       document.getElementById("timer").innerHTML = " ";
+
     }
 
     if(minute == 0 && second == 1){
       checkWinner();
       document.getElementById("timer").innerHTML = winner + "wins!";
       clearInterval(interval);
+      bso.pause();
+      bell.play();
     }
 
   }, 1000);

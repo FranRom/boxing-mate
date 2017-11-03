@@ -12,6 +12,8 @@ function Player(x, y, speed, ctx, images, facePositionX, direction) {
   this.friction = 0.9;
   this.keys = {};
   this.images = images;
+  this.faceImg = new Image();
+  this.faceImg.src = this.images[0];
   this.score = 0;
   this.facePosition = facePositionX;
   this.faceWidth = 75;
@@ -24,9 +26,9 @@ function Player(x, y, speed, ctx, images, facePositionX, direction) {
 
 Player.prototype.draw = function () {
 
-  var faceImg = new Image();
-  faceImg.src = this.images[0];
-  ctx.drawImage(faceImg, this.x + this.facePosition, this.y, this.faceWidth, this.faceHeight);
+  //var faceImg = new Image();
+  //faceImg.src = this.images[0];
+  ctx.drawImage(this.faceImg, this.x + this.facePosition, this.y, this.faceWidth, this.faceHeight);
   this.lpunch.draw(this.x, this.y + 75);
   this.rpunch.draw(this.x, this.y - 40);
 
@@ -37,28 +39,24 @@ Player.prototype.moveLeft = function () {
   if (this.Vx > -this.speed) {
       this.Vx--;
   }
-  console.log("moveLeft was called");
 };
 
 Player.prototype.moveRight = function () {
   if (this.Vx < this.speed) {
       this.Vx++;
   }
-  console.log("moveRight was called");
 };
 
 Player.prototype.moveUp = function () {
     if (this.Vy > -this.speed) {
         this.Vy--;
   }
-  console.log("moveUp was called");
 };
 
 Player.prototype.moveDown = function () {
     if (this.Vy < this.speed) {
         this.Vy++;
     }
-  console.log("moveDown was called");
 };
 
 Player.prototype.updatePosition = function() {

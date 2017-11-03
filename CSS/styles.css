@@ -4,6 +4,7 @@ body {
   margin-top: 64px;
   background-color: #E8E8E8;
   font-family: 'Nova Square', sans-serif;
+  text-align: center;
 }
 
 h1 {
@@ -28,9 +29,26 @@ canvas {
 }
 
 .logo {
-  padding-top: 32px;
   width: 200px;
 
+}
+
+.col-md-4 {
+  padding: 32px;
+}
+
+.col1 {
+  text-align: right;
+  margin-top: 32px;
+}
+
+.col2 {
+ text-align: center;
+}
+
+.col3 {
+  text-align: left;
+  margin-top: 32px;
 }
 
 .outlined-button {
@@ -47,5 +65,8 @@ canvas {
 .outlined-button:hover {
   background-color: white;
   color: #FD7422;
+}
 
+.centered {
+  text-align: center;
 }
