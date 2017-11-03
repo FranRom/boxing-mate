@@ -89,9 +89,16 @@ window.onload = function(){
     document.getElementById("timer").innerHTML = "Time left: " + minute + ":" + second;
     second--;
 
+    if(minute==1){
+    document.getElementById("timer").innerHTML = "Round starts!";
+  }
+
     if(second == 0){
       minute--;
-      second = 10;
+      second = 60;
+    }
+    if(second < 10){
+     second= '0'+ second;
     }
 
     if(minute <= -1) {
@@ -122,6 +129,6 @@ setInterval(function(){
   document.getElementById("Player1Score").innerHTML = player1.score + " punches";
   document.getElementById("Player2Score").innerHTML = player2.score + " punches";
 
-}, 100);
+}, 200);
 
 updateGameArea();
