@@ -36,16 +36,24 @@ h3 {
 
 }
 
+.orange {
+  color: #CF7E23;
+}
+
+.green {
+  color: #3F7C3B;
+}
+
 .playerScore1 {
   background-color: #ffffff;
-  border: 1px solid #0F1D4A;
+  border: 1px solid #CF7E23;
   border-radius: 5px;
   padding: 20px;
 }
 
 .playerScore2  {
   background-color: #ffffff;
-  border: 1px solid #0F1D4A;
+  border: 1px solid #3F7C3B;
   border-radius: 5px;
   padding: 20px;
 }

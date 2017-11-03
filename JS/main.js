@@ -12,6 +12,7 @@
   var bell = new Audio('./sounds/boxingBell.mp3');
   var punch = new Audio('./sounds/punch3.mp3');
   var grunz = new Audio ('./sounds/grunz.mp3');
+  var intro = new Audio ('./sounds/')
 
   myGameArea.draw();
 
